@@ -1,0 +1,30 @@
+baseURL: '/'
+languageCode: 'en-us'
+title: 'Hugo & Tailwind 3.0'
+disableKinds: ["taxonomy","taxonomyTerm"]
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    codeFences: true
+    guessSyntax: true
+    hl_Lines: ""
+    lineAnchors: ""
+    lineNoStart: 1
+    lineNos: true
+    lineNumbersInTable: true
+    noClasses: false
+    style: monokai
+    tabWidth: 4
+
+imaging:
+  # Default resample filter used for resizing. Default is Box,
+  # a simple and fast averaging filter appropriate for downscaling.
+  # See https://github.com/disintegration/imaging
+  resampleFilter: "lanczos"
+
+  # Default JPEG quality setting. Default is 75.
+  quality: 90
+
