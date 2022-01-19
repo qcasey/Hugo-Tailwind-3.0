@@ -1,0 +1,25 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: build
+    image: plugins/docker
+    settings:
+      registry: registry.quinncasey.com
+      repo: registry.quinncasey.com/hugo-tailwind-example
+      tags:
+        - latest
+        - ${DRONE_BUILD_NUMBER}
+      build_args:
+        - PUBLISH_DIR=public
+      username: casey
+      password:
+        from_secret: registry_password
+  - name: prune images
+    image: anoxis/registry-cli:latest
+    commands:
+      - /registry.py -l casey:$PASSWORD -r https://registry.quinncasey.com -i hugo-tailwind-example --delete --num 10 --keep-tags "stable" "latest"
+    environment:
+      PASSWORD:
+        from_secret: registry_password
